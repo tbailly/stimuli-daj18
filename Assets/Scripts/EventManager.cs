@@ -98,7 +98,7 @@ public class EventEditor : Editor
                 }
                 break;
 
-                case TypeEvent.Lumière:
+                case TypeEvent.Skybox:
                 if (e.gameObject.GetComponent<SkyboxEventManager>() == null)
                     e.gameObject.AddComponent<SkyboxEventManager>();              
                    break;

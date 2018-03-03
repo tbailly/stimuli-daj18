@@ -21,7 +21,7 @@ public class GlobalTimer : MonoBehaviour {
         }
         else
         {
-            Debug.Log(value_min);
+            
         }
 	}
 }

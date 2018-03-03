@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class Event : MonoBehaviour
+public class EventManager : MonoBehaviour
 {
     private CharacterController player;
     public float minuteur;
@@ -16,21 +16,21 @@ public class Event : MonoBehaviour
     }   
 }
 public enum Rotation{ None, degrees0, degrees45, degrees90, degrees135, degrees180, degrees225, degrees270, degrees315};
-public enum Type { None, Son, Lumière, Interaction };
+public enum TypeEvent { None, Son, Lumière, Interaction };
 
-[CustomEditor(typeof(Event))]
+[CustomEditor(typeof(EventManager))]
 
 public class EventEditor : Editor
     {
-    Event e;
+    EventManager e;
     Vector3 pos = new Vector3 (0,0,0);
     public Rotation rotation;
-    public Type type;
-    private Type prev;
+    public TypeEvent type;
+    private TypeEvent prev;
 
     private void Awake()
     {
-       e = (Event)target;       
+       e = (EventManager)target;       
     }
 
     public override void OnInspectorGUI()
@@ -39,14 +39,14 @@ public class EventEditor : Editor
         e.minuteur = EditorGUILayout.FloatField("Minuteur :", e.minuteur);
         e.distance = EditorGUILayout.FloatField("Distance :", e.distance);
         rotation = (Rotation)EditorGUILayout.EnumPopup("Rotation :", rotation);
-        type = (Type)EditorGUILayout.EnumPopup("Type d'événement :", type);
+        type = (TypeEvent)EditorGUILayout.EnumPopup("Type d'événement :", type);
 
        if (GUILayout.Button("Create"))
             ComponentSettings(rotation, type);
 
     }
 
-    void ComponentSettings(Rotation _rotation, Type _type)
+    void ComponentSettings(Rotation _rotation, TypeEvent _type)
     {
         //ROTATION
         switch (rotation)
@@ -96,17 +96,17 @@ public class EventEditor : Editor
 
         switch (type)
            {
-               case Type.Son:
+               case TypeEvent.Son:
                 if (e.gameObject.GetComponent<SoundManager>() == null)                
                     e.gameObject.AddComponent<SoundManager>();   
                    break;
 
-                case Type.Lumière:
+                case TypeEvent.Lumière:
                 if (e.gameObject.GetComponent<LightManager>() == null)
                     e.gameObject.AddComponent<LightManager>();              
                    break;
 
-                case Type.Interaction:
+                case TypeEvent.Interaction:
                 if (e.gameObject.GetComponent<InteractionManager>() == null)
                     e.gameObject.AddComponent<InteractionManager>();
                 break;

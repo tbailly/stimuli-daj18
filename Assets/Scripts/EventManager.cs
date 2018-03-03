@@ -15,13 +15,14 @@ public class EventManager : MonoBehaviour
         gameObject.transform.position = new Vector3(0, 0, 0);
     }
 
-    private void Update()
+    public void Activate()
     {
-        
+        if (GetComponent<EventSound>())
+            GetComponent<EventSound>().StartEventSound();
     }
 }
 public enum Rotation{ None, degrees0, degrees45, degrees90, degrees135, degrees180, degrees225, degrees270, degrees315};
-public enum TypeEvent { None, Son, Lumière, Object };
+public enum TypeEvent { None, Son, Lumière, Interaction };
 
 [CustomEditor(typeof(EventManager))]
 
@@ -85,35 +86,26 @@ public class EventEditor : Editor
                 break;
         }
 
-        //ADD/DELETE COMPONENT BY EVENT TYPE
-        if (e.gameObject.GetComponent<SoundManager>())
-        {
-            DestroyImmediate(e.gameObject.GetComponent<SoundManager>());
-        }
-        else if (e.gameObject.GetComponent<LightManager>())
-        {
-            DestroyImmediate(e.gameObject.GetComponent<LightManager>());
-        }
-        else if (e.gameObject.GetComponent<ObjectManager>())
-        {
-            DestroyImmediate(e.gameObject.GetComponent<ObjectManager>());
-        }
-
         switch (type)
            {
                case TypeEvent.Son:
-                if (e.gameObject.GetComponent<SoundManager>() == null)                
-                    e.gameObject.AddComponent<SoundManager>();   
-                   break;
+                if (e.gameObject.GetComponent<EventSound>() == null)
+                {
+                    e.gameObject.AddComponent<EventSound>();
+                    e.gameObject.AddComponent<AudioSource>();
+                    e.gameObject.GetComponent<AudioSource>().playOnAwake = false;
+                    e.gameObject.GetComponent<AudioSource>().spatialBlend = 1;
+                }
+                break;
 
                 case TypeEvent.Lumière:
                 if (e.gameObject.GetComponent<LightManager>() == null)
                     e.gameObject.AddComponent<LightManager>();              
                    break;
 
-                case TypeEvent.Object:
-                if (e.gameObject.GetComponent<ObjectManager>() == null)
-                    e.gameObject.AddComponent<ObjectManager>();
+                case TypeEvent.Interaction:
+                if (e.gameObject.GetComponent<InteractionManager>() == null)
+                    e.gameObject.AddComponent<InteractionManager>();
                 break;
            }
        

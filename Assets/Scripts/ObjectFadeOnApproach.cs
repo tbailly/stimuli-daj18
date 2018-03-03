@@ -6,31 +6,32 @@ public class ObjectFadeOnApproach : MonoBehaviour {
 
     public Player player;
     public ControllerManager controllerManager;
-    public float minDistance;
     public float startFadeDistance;
     public float endFadeDistance;
 
     MeshRenderer rend;
     Material mat;
+    Vector3 vectorToPlayer;
 
 	// Use this for initialization
 	void Start () {
         rend = GetComponent<MeshRenderer>();
         mat = rend.material;
-	}
+        vectorToPlayer = transform.position - player.transform.position;
+        vectorToPlayer.Normalize();
+    }
 	
 	// Update is called once per frame
 	void Update () {
         float distance = Vector3.Distance(transform.position, player.transform.position);
-        
-        if (distance < startFadeDistance && distance > endFadeDistance)
+
+        if (distance < startFadeDistance - 1 && distance > endFadeDistance)
         {
             if (rend.enabled == false)
                 rend.enabled = true;
             float alpha = (distance - endFadeDistance) / (startFadeDistance - endFadeDistance);
             Color oldColor = mat.color;
             mat.color = new Color(oldColor.r, oldColor.g, oldColor.b, alpha);
-            controllerManager.setVibration(1 - alpha, 1 - alpha);
         }
         else if (distance <= endFadeDistance && rend.enabled == true)
         {

@@ -13,10 +13,12 @@ public class EventManager : MonoBehaviour
     {
         player = (CharacterController)FindObjectOfType(typeof(CharacterController));
         gameObject.transform.position = new Vector3(0, 0, 0);
+        StartCoroutine("Activate");
     }
 
-    public void Activate()
+    public IEnumerator Activate()
     {
+        yield return new WaitForSeconds(minuteur);
         if (GetComponent<EventSound>())
             GetComponent<EventSound>().StartEventSound();
     }

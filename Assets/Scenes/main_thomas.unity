@@ -211,8 +211,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1842848452}
   controllerManager: {fileID: 806717120}
-  startFadeDistance: 10
-  endFadeDistance: 2
+  p1: 20
+  p2: 15
+  p3: 10
+  p4: 2
 --- !u!1001 &431256291
 Prefab:
   m_ObjectHideFlags: 0

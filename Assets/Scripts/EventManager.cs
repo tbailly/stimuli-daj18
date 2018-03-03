@@ -13,10 +13,15 @@ public class EventManager : MonoBehaviour
     {
         player = (CharacterController)FindObjectOfType(typeof(CharacterController));
         gameObject.transform.position = new Vector3(0, 0, 0);
-    }   
+    }
+
+    private void Update()
+    {
+        
+    }
 }
 public enum Rotation{ None, degrees0, degrees45, degrees90, degrees135, degrees180, degrees225, degrees270, degrees315};
-public enum TypeEvent { None, Son, Lumière, Interaction };
+public enum TypeEvent { None, Son, Lumière, Object };
 
 [CustomEditor(typeof(EventManager))]
 
@@ -89,9 +94,9 @@ public class EventEditor : Editor
         {
             DestroyImmediate(e.gameObject.GetComponent<LightManager>());
         }
-        else if (e.gameObject.GetComponent<InteractionManager>())
+        else if (e.gameObject.GetComponent<ObjectManager>())
         {
-            DestroyImmediate(e.gameObject.GetComponent<InteractionManager>());
+            DestroyImmediate(e.gameObject.GetComponent<ObjectManager>());
         }
 
         switch (type)
@@ -106,9 +111,9 @@ public class EventEditor : Editor
                     e.gameObject.AddComponent<LightManager>();              
                    break;
 
-                case TypeEvent.Interaction:
-                if (e.gameObject.GetComponent<InteractionManager>() == null)
-                    e.gameObject.AddComponent<InteractionManager>();
+                case TypeEvent.Object:
+                if (e.gameObject.GetComponent<ObjectManager>() == null)
+                    e.gameObject.AddComponent<ObjectManager>();
                 break;
            }
        

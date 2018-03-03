@@ -22,7 +22,7 @@ public class EventManager : MonoBehaviour
     }
 }
 public enum Rotation{ None, degrees0, degrees45, degrees90, degrees135, degrees180, degrees225, degrees270, degrees315};
-public enum TypeEvent { None, Son, Lumière, Interaction };
+public enum TypeEvent { None, Son, Skybox, Interaction };
 
 [CustomEditor(typeof(EventManager))]
 
@@ -98,9 +98,9 @@ public class EventEditor : Editor
                 }
                 break;
 
-                case TypeEvent.Lumière:
-                if (e.gameObject.GetComponent<LightManager>() == null)
-                    e.gameObject.AddComponent<LightManager>();              
+                case TypeEvent.Skybox:
+                if (e.gameObject.GetComponent<SkyboxEventManager>() == null)
+                    e.gameObject.AddComponent<SkyboxEventManager>();              
                    break;
 
                 case TypeEvent.Interaction:

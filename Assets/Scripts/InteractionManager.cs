@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightManager : MonoBehaviour {
+public class InteractionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

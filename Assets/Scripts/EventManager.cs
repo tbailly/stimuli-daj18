@@ -13,7 +13,13 @@ public class EventManager : MonoBehaviour
     {
         player = (CharacterController)FindObjectOfType(typeof(CharacterController));
         gameObject.transform.position = new Vector3(0, 0, 0);
-    }   
+    }
+
+    public void Activate()
+    {
+        if (GetComponent<EventSound>())
+            GetComponent<EventSound>().StartEventSound();
+    }
 }
 public enum Rotation{ None, degrees0, degrees45, degrees90, degrees135, degrees180, degrees225, degrees270, degrees315};
 public enum TypeEvent { None, Son, Lumière, Interaction };
@@ -80,26 +86,17 @@ public class EventEditor : Editor
                 break;
         }
 
-        //ADD/DELETE COMPONENT BY EVENT TYPE
-        if (e.gameObject.GetComponent<SoundManager>())
-        {
-            DestroyImmediate(e.gameObject.GetComponent<SoundManager>());
-        }
-        else if (e.gameObject.GetComponent<LightManager>())
-        {
-            DestroyImmediate(e.gameObject.GetComponent<LightManager>());
-        }
-        else if (e.gameObject.GetComponent<InteractionManager>())
-        {
-            DestroyImmediate(e.gameObject.GetComponent<InteractionManager>());
-        }
-
         switch (type)
            {
                case TypeEvent.Son:
-                if (e.gameObject.GetComponent<SoundManager>() == null)                
-                    e.gameObject.AddComponent<SoundManager>();   
-                   break;
+                if (e.gameObject.GetComponent<EventSound>() == null)
+                {
+                    e.gameObject.AddComponent<EventSound>();
+                    e.gameObject.AddComponent<AudioSource>();
+                    e.gameObject.GetComponent<AudioSource>().playOnAwake = false;
+                    e.gameObject.GetComponent<AudioSource>().spatialBlend = 1;
+                }
+                break;
 
                 case TypeEvent.Lumière:
                 if (e.gameObject.GetComponent<LightManager>() == null)

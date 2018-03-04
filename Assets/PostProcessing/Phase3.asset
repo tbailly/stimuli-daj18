@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a3bdb2cd68f901469e7cc149151eb49, type: 3}
-  m_Name: Phase2
+  m_Name: Phase3
   m_EditorClassIdentifier: 
   debugViews:
     m_Enabled: 1
@@ -100,8 +100,8 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 2.58
-        threshold: 1.18
+        intensity: 0.64
+        threshold: 1.1
         softKnee: 0.5
         radius: 4
         antiFlicker: 0
@@ -113,19 +113,19 @@ MonoBehaviour:
     m_Settings:
       tonemapping:
         tonemapper: 2
-        neutralBlackIn: 0.051
-        neutralWhiteIn: 12.1
-        neutralBlackOut: -0.006
-        neutralWhiteOut: 9.31
-        neutralWhiteLevel: 8.6
-        neutralWhiteClip: 6.45
+        neutralBlackIn: 0.026
+        neutralWhiteIn: 8.1
+        neutralBlackOut: -0.03
+        neutralWhiteOut: 7.93
+        neutralWhiteLevel: 3
+        neutralWhiteClip: 10
       basic:
         postExposure: 0
-        temperature: 12
-        tint: 47
-        hueShift: 2
-        saturation: 1.03
-        contrast: 1.03
+        temperature: 16
+        tint: -1
+        hueShift: 0
+        saturation: 1
+        contrast: 1
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
@@ -281,10 +281,10 @@ MonoBehaviour:
       lut: {fileID: 0}
       contribution: 1
   chromaticAberration:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0.737
+      intensity: 0.1
   grain:
     m_Enabled: 0
     m_Settings:

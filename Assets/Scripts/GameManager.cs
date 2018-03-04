@@ -34,10 +34,13 @@ public class GameManager : MonoBehaviour {
                 {                    
                     eventList[i].triggered = true;
 
-                    if(!eventList[i].GetComponent<EventSkybox>())
-                        Instantiate(eventList[i], eventList[i].RotateAround(eventList[i].distance), Quaternion.identity);
+                    if (!eventList[i].GetComponent<EventSkybox>())
+                    {
+                        eventList[i].gameObject.SetActive(true);
+                        eventList[i].transform.position = eventList[i].RotateAround(eventList[i].distance);
+                    }
                     else
-                    {                        
+                    {
                         Instantiate(eventList[i]);
                     }
                 }

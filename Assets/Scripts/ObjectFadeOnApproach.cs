@@ -23,6 +23,7 @@ public class ObjectFadeOnApproach : MonoBehaviour
         controllerManager = (ControllerManager)FindObjectOfType(typeof(ControllerManager)); 
         rend = GetComponent<MeshRenderer>();
         mat = rend.material;
+        mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, 0);
         vectorToPlayer = transform.position - player.transform.position;
         vectorToPlayer.Normalize();
     }

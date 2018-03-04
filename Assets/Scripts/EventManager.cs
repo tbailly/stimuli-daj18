@@ -41,7 +41,6 @@ public class EventManager : MonoBehaviour
     {
         if (GetComponent<EventSound>())
             GetComponent<EventSound>().StartEventSound();        
-
     } 
 
     //Spawn an object at a random position around a point with a given distance

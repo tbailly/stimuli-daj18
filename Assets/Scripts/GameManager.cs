@@ -32,27 +32,57 @@ public class GameManager : MonoBehaviour {
             //Debug.Log("End of the game");
         }   
         
-        for(int i = 0; i < eventList.Length; i++)
-        {            
-            if (timer >= eventList[i].minuteur)
-            {                
-                if (eventList[i].triggered == false)
-                {                    
-                    eventList[i].triggered = true;
-
-                    if (!eventList[i].GetComponent<EventSkybox>())
+        if (isInterior == false)
+        {
+            for (int i = 0; i < 33; i++)
+            {
+                if (timer >= eventList[i].minuteur)
+                {
+                    if (eventList[i].triggered == false)
                     {
-                        eventList[i].gameObject.SetActive(true);
-                        eventList[i].transform.position = eventList[i].RotateAround(eventList[i].distance);
+                        eventList[i].triggered = true;
+
+                        if (!eventList[i].GetComponent<EventSkybox>())
+                        {
+                            eventList[i].gameObject.SetActive(true);
+                            eventList[i].transform.position = eventList[i].RotateAround(eventList[i].distance);
+                        }
+                        else
+                        {
+                            eventList[i].gameObject.SetActive(true);
+                        }
                     }
                     else
                     {
-                        Instantiate(eventList[i]);
+                        //do nothing
                     }
                 }
-                else
+            }
+        }
+        else
+        {
+            for (int i = 33; i < eventList.Length; i++)
+            {
+                if (timer >= eventList[i].minuteur)
                 {
-                    //do nothing
+                    if (eventList[i].triggered == false)
+                    {
+                        eventList[i].triggered = true;
+
+                        if (!eventList[i].GetComponent<EventSkybox>())
+                        {
+                            eventList[i].gameObject.SetActive(true);
+                            eventList[i].transform.position = eventList[i].RotateAround(eventList[i].distance);
+                        }
+                        else
+                        {
+                            eventList[i].gameObject.SetActive(true);
+                        }
+                    }
+                    else
+                    {
+                        //do nothing
+                    }
                 }
             }
         }

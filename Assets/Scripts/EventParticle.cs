@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class EventParticle : MonoBehaviour {
 
-    public ParticleSystem particle;
-    public Color color1;
-    public Color color2;
+    public ParticleSystem oldParticle;
+    public ParticleSystem newParticle;
 
-	void Start () {
-		
+	void Start () {      
+        Destroy(oldParticle.GetComponent<ParticleSystem>());
+        newParticle.gameObject.SetActive(true);
 	}
 	
-	void Update () {
-		
-	}
 }

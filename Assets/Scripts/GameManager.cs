@@ -33,7 +33,13 @@ public class GameManager : MonoBehaviour {
                 if (eventList[i].triggered == false)
                 {                    
                     eventList[i].triggered = true;
-                    Instantiate(eventList[i], eventList[i].RotateAround(eventList[i].distance), Quaternion.identity);                  
+
+                    if(!eventList[i].GetComponent<EventSkybox>())
+                        Instantiate(eventList[i], eventList[i].RotateAround(eventList[i].distance), Quaternion.identity);
+                    else
+                    {                        
+                        Instantiate(eventList[i]);
+                    }
                 }
                 else
                 {

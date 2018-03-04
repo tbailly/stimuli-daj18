@@ -153,13 +153,13 @@ public class EventEditor : Editor
 
 
             case TypeEvent.Skybox:
-                if (e.gameObject.GetComponent<SkyboxEventManager>() == null)
-                    e.gameObject.AddComponent<SkyboxEventManager>();              
+                if (e.gameObject.GetComponent<EventSkybox>() == null)
+                    e.gameObject.AddComponent<EventSkybox>();              
                    break;
 
                 case TypeEvent.Interaction:
-                if (e.gameObject.GetComponent<InteractionManager>() == null)
-                    e.gameObject.AddComponent<InteractionManager>();
+                if (e.gameObject.GetComponent<EventInteraction>() == null)
+                    e.gameObject.AddComponent<EventInteraction>();
                 break;
            }
      

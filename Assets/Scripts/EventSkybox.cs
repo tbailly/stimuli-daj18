@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EventSkybox : MonoBehaviour {
 
-    public Material mat;   
+    public Material mat;
+    public Material backup;
     private Color baseColor;
     public Color newColor;
     private float baseExposure;
@@ -15,11 +16,14 @@ public class EventSkybox : MonoBehaviour {
     private float lerpedExposure;
     private float t = 0f;  
 
-    public void Start()
+    void Awake()
     {
-        baseColor = mat.GetColor("_Tint");
-        baseExposure = RenderSettings.skybox.GetFloat("_Exposure");
+        baseColor = backup.GetColor("_Tint");
+        baseExposure = backup.GetFloat("_Exposure");
+        RenderSettings.skybox.SetFloat("_Exposure", baseExposure);
+        mat.SetColor("_Tint", baseColor);
     }
+    
     private void Update()
     {                   
         lerpedColor = Color.Lerp(baseColor, newColor, t);

@@ -11,10 +11,10 @@ public class GameManager : MonoBehaviour {
     private float timer;    
     public EventManager[] eventList;
     private EventManager ev;
- 
+    
     void Start () {   
         timer = Time.deltaTime;
-        player = (Player)FindObjectOfType(typeof(Player));
+        player = (Player)FindObjectOfType(typeof(Player));        
     }	
 
 	void Update () {
@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour {
             {                
                 if (eventList[i].triggered == false)
                 {                    
-                    ev = Instantiate(eventList[i], eventList[i].RotateAround(eventList[i].distance), Quaternion.identity);                    
                     eventList[i].triggered = true;
+                    Instantiate(eventList[i], eventList[i].RotateAround(eventList[i].distance), Quaternion.identity);                  
                 }
                 else
                 {

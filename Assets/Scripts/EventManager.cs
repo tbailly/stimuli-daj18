@@ -5,24 +5,35 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {    
     public float minuteur;
-    public float lifetime;
+    public float lifetime;  
     public float distance;
     public enum Rotation { None, degrees0, degrees45, degrees90, degrees135, degrees180, degrees225, degrees270, degrees315 };
     public Rotation rotation;
     public bool triggered;
+    private IEnumerator coroutine;
 
     private void Start()
-    {                  
-        StartCoroutine("ActivateTimer");
+    {    
+        coroutine = ActivateTimer(lifetime);
+        StartCoroutine(coroutine);
     }
 
-    public IEnumerator ActivateTimer()
+    public IEnumerator ActivateTimer(float _lifetime)
     {
-        yield return new WaitForSeconds(minuteur);       
+        while (true)
+        {        
+            _lifetime -= 1.0f;
+
+            if (_lifetime <= 0)
+            {
+                Destroy(gameObject);
+            }
+            yield return new WaitForSeconds(1.0f);
+        }
     }
 
     private void Update()
-    {
+    {        
         
     }
     
@@ -42,6 +53,7 @@ public class EventManager : MonoBehaviour
         return V;
     }
 
+    //NOT USED
     public Vector3 SetPosition(Rotation rotation)
     {
         Player player = (Player)FindObjectOfType(typeof(Player));
@@ -104,14 +116,13 @@ public class EventEditor : Editor
     }
 
     public override void OnInspectorGUI()
-    {        
-        
+    {   
         prev = type;
         e.minuteur = EditorGUILayout.FloatField("Minuteur :", e.minuteur);
         e.lifetime = EditorGUILayout.FloatField("Durée de vie :", e.lifetime);
         e.distance = EditorGUILayout.FloatField("Distance :", e.distance);
         //e.rotation = (EventManager.Rotation)EditorGUILayout.EnumPopup("Rotation :", e.rotation);
-        e.triggered = EditorGUILayout.Toggle("Triggered ? :", false);
+        e.triggered = EditorGUILayout.Toggle("Triggered ? :", e.triggered);
         type = (TypeEvent)EditorGUILayout.EnumPopup("Type d'événement :", type);
 
        if (GUILayout.Button("Create"))

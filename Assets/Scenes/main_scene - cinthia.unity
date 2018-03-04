@@ -219,7 +219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &553820430
 Transform:
   m_ObjectHideFlags: 0
@@ -611,7 +611,8 @@ MonoBehaviour:
   globalTimer: 40.33
   eventList:
   - {fileID: 114336130788462518, guid: 5811fa3def0722e4cb01eb768cb52618, type: 2}
-  - {fileID: 114372573542383124, guid: 45c83c09a53197f408a95609fab0d16f, type: 2}
+  - {fileID: 114969985459670200, guid: ff14be3350f1a5b489953486d952edde, type: 2}
+  - {fileID: 114180963381986702, guid: 063a08115d1cb6c4f8b0814f9e4b6456, type: 2}
 --- !u!4 &1418921866
 Transform:
   m_ObjectHideFlags: 0
@@ -631,7 +632,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1418921864}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 317978ff49b65f348bdce8dd27204116, type: 3}
   m_Name: 

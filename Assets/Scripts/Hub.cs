@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Hub : MonoBehaviour {
 
+    public GameObject interior;
+    public GameObject exterior;
+
 	// Use this for initialization
 	void Start () {
     }
@@ -16,5 +19,15 @@ public class Hub : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
+        exterior.SetActive(false);
+        interior.SetActive(true);
+    }
+
+    public Vector3 RotateAround(float distance)
+    {
+        float angle = Random.Range(0.0f, Mathf.PI * 2);
+        Vector3 V = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
+        V *= distance;
+        return V;
     }
 }

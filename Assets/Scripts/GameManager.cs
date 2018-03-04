@@ -10,11 +10,13 @@ public class GameManager : MonoBehaviour {
     public float globalTimer;
     private float timer;    
     public EventManager[] eventList;
+    public Hub hub;
     private EventManager ev;
     
     void Start () {   
         timer = Time.deltaTime;
-        player = (Player)FindObjectOfType(typeof(Player));        
+        player = (Player)FindObjectOfType(typeof(Player));
+        StartCoroutine("SpawnHub");  
     }	
 
 	void Update () {
@@ -23,7 +25,7 @@ public class GameManager : MonoBehaviour {
         timer += Time.deltaTime;
         if (timer >= globalTimer)
         {
-            Debug.Log("End of the game");
+            //Debug.Log("End of the game");
         }   
         
         for(int i = 0; i < eventList.Length; i++)
@@ -50,6 +52,13 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
+    }
+
+    IEnumerator SpawnHub()
+    {
+        yield return new WaitForSeconds(90);
+        hub.gameObject.SetActive(true);
+        hub.transform.position = hub.RotateAround(0);
     }
 
     void OnApplicationQuit()

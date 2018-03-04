@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EventTrigger : MonoBehaviour {
 
-    public EventManager eventOut;
-    public EventManager eventIn;
+    public GameObject eventOut;
+    public GameObject eventIn;
 
     // Use this for initialization
     void Start () {
@@ -19,14 +19,14 @@ public class EventTrigger : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        eventIn.gameObject.SetActive(true);
-        eventIn.Activate();
-        eventOut.gameObject.SetActive(false);
+        if (eventOut.activeSelf == true)
+        {
+            eventIn.SetActive(true);
+            eventOut.SetActive(false);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        eventIn.gameObject.SetActive(false);
-        eventOut.gameObject.SetActive(true);
-        eventOut.Activate();
+        eventIn.SetActive(false);
     }
 }

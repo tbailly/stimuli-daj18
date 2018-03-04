@@ -19,6 +19,8 @@ public class ObjectFadeOnApproach : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        player = (Player)FindObjectOfType(typeof(Player)); 
+        controllerManager = (ControllerManager)FindObjectOfType(typeof(ControllerManager)); 
         rend = GetComponent<MeshRenderer>();
         mat = rend.material;
         vectorToPlayer = transform.position - player.transform.position;

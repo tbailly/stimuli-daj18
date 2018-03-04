@@ -19,8 +19,10 @@ public class GameManager : MonoBehaviour {
 
 	void Update () {
         playerPos = player.transform.position;
-
+       
         timer += Time.deltaTime;
+        Debug.Log(timer);
+
         if (timer >= globalTimer)
         {
             Debug.Log("End of the game");
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour {
                     }
                     else
                     {
-                        Instantiate(eventList[i]);
+                        eventList[i].gameObject.SetActive(true);
                     }
                 }
                 else

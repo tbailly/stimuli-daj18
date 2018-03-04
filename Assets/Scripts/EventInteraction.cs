@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectManager : MonoBehaviour {
+public class EventInteraction : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

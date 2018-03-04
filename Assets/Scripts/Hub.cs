@@ -7,6 +7,7 @@ public class Hub : MonoBehaviour {
     public GameObject interior;
     public GameObject exterior;
     public GameManager gameManager;
+    public GameObject heartBeat;
 
     // Use this for initialization
     void Start () {
@@ -23,6 +24,7 @@ public class Hub : MonoBehaviour {
         exterior.SetActive(false);
         interior.SetActive(true);
         gameManager.isInterior = true;
+        heartBeat.SetActive(true);
     }
 
     public Vector3 RotateAround(float distance)

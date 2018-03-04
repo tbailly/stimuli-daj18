@@ -3,9 +3,9 @@ using UnityEditor;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour
-{    
+{
     public float minuteur;
-    public float lifetime;  
+    public float lifetime;
     public float distance;
     public enum Rotation { None, degrees0, degrees45, degrees90, degrees135, degrees180, degrees225, degrees270, degrees315 };
     public Rotation rotation;
@@ -13,7 +13,7 @@ public class EventManager : MonoBehaviour
     private IEnumerator coroutine;
 
     private void Start()
-    {    
+    {
         coroutine = ActivateTimer(lifetime);
         StartCoroutine(coroutine);
     }
@@ -21,7 +21,7 @@ public class EventManager : MonoBehaviour
     public IEnumerator ActivateTimer(float _lifetime)
     {
         while (true)
-        {        
+        {
             _lifetime -= 1.0f;
 
             if (_lifetime <= 0)
@@ -33,20 +33,20 @@ public class EventManager : MonoBehaviour
     }
 
     private void Update()
-    {        
-        
+    {
+
     }
-    
+
     public void Activate()
     {
         if (GetComponent<EventSound>())
-            GetComponent<EventSound>().StartEventSound();        
-    } 
+            GetComponent<EventSound>().StartEventSound();
+    }
 
     //Spawn an object at a random position around a point with a given distance
     public Vector3 RotateAround(float distance)
     {
-        float angle = Random.Range(0.0f, Mathf.PI * 2);       
+        float angle = Random.Range(0.0f, Mathf.PI * 2);
         Vector3 V = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
         V *= distance;
         return V;
@@ -98,24 +98,24 @@ public class EventManager : MonoBehaviour
 /********************************
  * CUSTOM EDITOR
  *********************************/
-public enum TypeEvent { None, Son, Graphique, Skybox, Interaction };
+public enum TypeEvent { None, Son, Graphique, Skybox, Particle, Cloud, Interaction };
 
 [CustomEditor(typeof(EventManager))]
 public class EventEditor : Editor
-    {
+{
     EventManager e;
 
     public TypeEvent type;
-    private TypeEvent prev;  
-    
+    private TypeEvent prev;
+
 
     private void Awake()
     {
-       e = (EventManager)target;       
+        e = (EventManager)target;
     }
 
     public override void OnInspectorGUI()
-    {   
+    {
         prev = type;
         e.minuteur = EditorGUILayout.FloatField("Minuteur :", e.minuteur);
         e.lifetime = EditorGUILayout.FloatField("Durée de vie :", e.lifetime);
@@ -130,7 +130,7 @@ public class EventEditor : Editor
             e.lifetime = EditorGUILayout.FloatField("Durée de vie :", e.lifetime);
             e.distance = EditorGUILayout.FloatField("Distance :", e.distance);
         }
-           
+
 
         if (GUILayout.Button("Create"))
             ComponentSettings(type);
@@ -138,10 +138,10 @@ public class EventEditor : Editor
 
     //Set parameters by event type
     void ComponentSettings(TypeEvent _type)
-    {    
+    {
         switch (type)
-           {
-               case TypeEvent.Son:
+        {
+            case TypeEvent.Son:
                 if (e.gameObject.GetComponent<EventSound>() == null)
                 {
                     e.gameObject.AddComponent<EventSound>();
@@ -151,24 +151,28 @@ public class EventEditor : Editor
                 }
                 break;
 
-                case TypeEvent.Graphique:
+            case TypeEvent.Graphique:
                 if (e.gameObject.GetComponent<ObjectFadeOnApproach>() == null)
                 {
-                    e.gameObject.AddComponent<ObjectFadeOnApproach>();                
+                    e.gameObject.AddComponent<ObjectFadeOnApproach>();
                 }
                 break;
 
 
             case TypeEvent.Skybox:
                 if (e.gameObject.GetComponent<EventSkybox>() == null)
-                    e.gameObject.AddComponent<EventSkybox>();              
-                   break;
+                    e.gameObject.AddComponent<EventSkybox>();
+                break;
 
-                case TypeEvent.Interaction:
+            case TypeEvent.Interaction:
                 if (e.gameObject.GetComponent<EventInteraction>() == null)
                     e.gameObject.AddComponent<EventInteraction>();
                 break;
-           }
-     
+            case TypeEvent.Particle:
+                if (e.gameObject.GetComponent<EventParticle>() == null)
+                    e.gameObject.AddComponent<EventParticle>();
+                break;
+        }
+
     }
 }

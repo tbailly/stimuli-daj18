@@ -6,9 +6,10 @@ public class Hub : MonoBehaviour {
 
     public GameObject interior;
     public GameObject exterior;
+    public GameManager gameManager;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
     }
 	
 	// Update is called once per frame
@@ -21,6 +22,7 @@ public class Hub : MonoBehaviour {
         Destroy(gameObject);
         exterior.SetActive(false);
         interior.SetActive(true);
+        gameManager.isInterior = true;
     }
 
     public Vector3 RotateAround(float distance)

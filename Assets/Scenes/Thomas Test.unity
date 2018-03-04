@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.018646225, g: 0, b: 0.11761478, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.011764532, b: 0.11566139, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1783,7 +1783,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1339925131076044, guid: 48f54e46b6e200c4bb5690724ddb5b85, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f54e46b6e200c4bb5690724ddb5b85, type: 2}
@@ -2500,7 +2500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerManager: {fileID: 1820521977}
-  globalTimer: 50
+  globalTimer: 10
   eventList:
   - {fileID: 111436489}
   - {fileID: 367172360}
@@ -2533,6 +2533,7 @@ MonoBehaviour:
   - {fileID: 630530886}
   - {fileID: 659383618}
   hub: {fileID: 2094765341}
+  isInterior: 0
 --- !u!4 &183958968
 Transform:
   m_ObjectHideFlags: 0
@@ -40914,6 +40915,10 @@ Prefab:
       propertyPath: m_Name
       value: EventTrigger pluie
       objectReference: {fileID: 0}
+    - target: {fileID: 1503651206651376, guid: fa499fdf24623604d8041612b271e416, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa499fdf24623604d8041612b271e416, type: 2}
   m_IsPrefabParent: 0
@@ -50030,6 +50035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interior: {fileID: 1528370766}
   exterior: {fileID: 338789900}
+  gameManager: {fileID: 183958967}
 --- !u!82 &2094765342
 AudioSource:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
     private float timer;    
     public EventManager[] eventList;
     public Hub hub;
+    public bool isInterior = false;
+    private bool oldInterior = false;
     private EventManager ev;
     
     void Start () {   
@@ -22,8 +24,10 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         playerPos = player.transform.position;
 
+        if (oldInterior != isInterior)
+            timer = 0;
         timer += Time.deltaTime;
-        if (timer >= globalTimer)
+        if (timer >= globalTimer && isInterior == true)
         {
             //Debug.Log("End of the game");
         }   
@@ -52,6 +56,7 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
+        oldInterior = isInterior;
     }
 
     IEnumerator SpawnHub()

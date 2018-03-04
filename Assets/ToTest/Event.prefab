@@ -56,7 +56,7 @@ MonoBehaviour:
   lifetime: 10
   distance: 0
   rotation: 2
-  triggered: 1
+  triggered: 0
 --- !u!114 &114660093555908958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,4 +70,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat: {fileID: 2100000, guid: 9cd2cd814642d0e41a9f40131d916fb3, type: 2}
   newColor: {r: 0.925, g: 0, b: 0.284, a: 0}
+  newExposure: 1.5
   durationFade: 10

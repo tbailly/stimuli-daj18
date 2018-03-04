@@ -124,7 +124,15 @@ public class EventEditor : Editor
         e.triggered = EditorGUILayout.Toggle("Triggered ? :", e.triggered);
         type = (TypeEvent)EditorGUILayout.EnumPopup("Type d'événement :", type);
 
-       if (GUILayout.Button("Create"))
+        if (GUI.changed)
+        {
+            e.minuteur = EditorGUILayout.FloatField("Minuteur :", e.minuteur);
+            e.lifetime = EditorGUILayout.FloatField("Durée de vie :", e.lifetime);
+            e.distance = EditorGUILayout.FloatField("Distance :", e.distance);
+        }
+           
+
+        if (GUILayout.Button("Create"))
             ComponentSettings(type);
     }
 
